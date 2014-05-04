@@ -19,6 +19,8 @@ class Post < EncryptedMessage
   validates :subject, presence: true
   validates :body, presence: true
   
+  #############################################################
+  # Data that the encrypted message needs to encode.
   def structured_plaintext
     {
       subject: subject,

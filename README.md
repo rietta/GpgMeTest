@@ -5,6 +5,14 @@ System for providing for a cryptographically enforced one-way information flow.
 - Encrypted records
 - Data retention policy - delete after date
 
+## Dependencies
+- gnupg
+  - sudo apt-get install gpg
+  - brew install gpg
+- gpgme
+  - sudo apt-get install libgpgme11-dev
+  - brew install gpgme
+
 ## Cryptosystem in place
 This system does not invent its own crypto, but uses GnuPG, that implements the
 OpenPGP standard.
@@ -39,6 +47,7 @@ This should only be possible for weak ciphers, even the classic DES is not prone
 > triple-DES is very strong under all attacks.
 
 ### Key management
+Even the strongest cryptosystem will fall if end-point security fails in a way that leads to the disclosure of the secret keys that gain access to data.
 
 #### End-user Keys
 #### Decrytping Server

@@ -19,8 +19,20 @@ class EncryptedMessage < ActiveRecord::Base
   validates :delete_at, presence: true
   validates :type, presence: true
   
+  def encrypt_text(text)
+    crypto = GPGME::Crypto.new(armor: true)
+    crypto.encrypt(text, recipients: recipient_keys)
+  end
+  
   #############################
   protected
+  
+  # The keys of the parties to receive this data
+  # This could presumably be specified in a database, rather than hard coded.
+  # The choice is left to the developer who is adopting this test to their own purposes.
+  def recipient_keys
+    ['frank@rietta.com']
+  end
   
   def structured_plaintext
     raise MUST_IMPLEMENT
