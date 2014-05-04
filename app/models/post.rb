@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: encrypted_messages
+#
+#  id                        :integer          not null, primary key
+#  type                      :string(255)      not null
+#  plaintext_description     :string(255)
+#  delete_at                 :date             not null
+#  encrypted_body            :text
+#  encrypted_structured_body :text
+#  created_at                :datetime
+#  updated_at                :datetime
+#
+
 class Post < EncryptedMessage
   
   attr_accessor :subject, :body, :url

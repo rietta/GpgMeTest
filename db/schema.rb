@@ -14,11 +14,16 @@
 ActiveRecord::Schema.define(version: 20140504035928) do
 
   create_table "encrypted_messages", force: true do |t|
-    t.string   "type"
-    t.text     "body"
-    t.text     "structured_body"
+    t.string   "type",                      null: false
+    t.string   "plaintext_description"
+    t.date     "delete_at",                 null: false
+    t.text     "encrypted_body"
+    t.text     "encrypted_structured_body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "encrypted_messages", ["delete_at"], name: "index_encrypted_messages_on_delete_at"
+  add_index "encrypted_messages", ["type"], name: "index_encrypted_messages_on_type"
 
 end
