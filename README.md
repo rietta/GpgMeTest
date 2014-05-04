@@ -17,7 +17,7 @@ The base of the system is `EncryptedMessage`. It needs to be subclassed.
 ## Weaknesses
 
 ### Know plaintext attack 
-If GnuPG were to be found to be susceptible to a known plaintext attack then an attacker could learn information about the key used because encrypted records have labels or JSON keys in common.
+If GnuPG were to be found to be susceptible to a known plaintext attack then an attacker could learn information about the key used because encrypted records have labels or JSON keys in common. **It is not known to be susceptible to this attack with the current modern ciphers.**
 
 This should only be possible for weak ciphers, even the classic DES is not prone to a KPA.
 
