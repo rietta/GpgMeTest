@@ -14,12 +14,14 @@
 
 class EncryptedMessage < ActiveRecord::Base
   MUST_IMPLEMENT  = 'Must be implemented by a subclass.'
+  PGP_ERROR       = 'Must be an OpenPGP encrypted message.'
   PGP_OPENING     = '-----BEGIN PGP MESSAGE-----'
   PGP_ENDING      = '-----END PGP MESSAGE-----'
 
   before_save :prepare_cipher_text
 
   # The database does not let these fields be nil, so the presence is needed.
+  validate  :validate_ciphertext_is_not_plain, :expiration_is_in_the_future
   validates :delete_at, presence: true
   validates :type, presence: true
   validates :encrypted_body, presence: true
@@ -48,7 +50,7 @@ class EncryptedMessage < ActiveRecord::Base
     else
       false
     end
-  end
+  end # pgp_message?
 
   #############################
   protected
@@ -77,6 +79,21 @@ class EncryptedMessage < ActiveRecord::Base
   ##############################
   private
 
+  def validate_ciphertext_is_not_plain
+    unless EncryptedMessage.pgp_message?(encrypted_body)
+      errors.add(:encrypted_body, PGP_ERROR)
+    end
+
+    unless EncryptedMessage.pgp_message?(encrypted_structured_body)
+      errors.add(:encrypted_structured_body, PGP_ERROR)
+    end
+  end # validate_ciphertext_is_not_plain
+
+  def expiration_is_in_the_future
+    if delete_at and delete_at.past?
+      errors.add(:delated_at, 'Cannot be in the Past.')
+    end
+  end
 
 
 end # EncryptedMessage
