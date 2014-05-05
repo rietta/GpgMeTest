@@ -12,6 +12,8 @@
 #  updated_at                :datetime
 #
 
+# © 2014 Rietta Inc. All Rights Reserved.
+
 class Post < EncryptedMessage
 
   attr_accessor :subject, :body, :url

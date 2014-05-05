@@ -12,6 +12,8 @@
 #  updated_at                :datetime
 #
 
+# © 2014 Rietta Inc. All Rights Reserved.
+
 class EncryptedMessage < ActiveRecord::Base
   MUST_IMPLEMENT  = 'Must be implemented by a subclass.'
   PGP_ERROR       = 'Must be an OpenPGP encrypted message.'
