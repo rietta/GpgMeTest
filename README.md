@@ -47,10 +47,10 @@ This should only be possible for weak ciphers, even the classic DES is not prone
 > triple-DES is very strong under all attacks.
 
 ### Key management
-Even the strongest cryptosystem will fall if end-point security fails in a way that leads to the disclosure of the secret keys that gain access to data.
+Even the strongest crypto-system will fall if end-point security fails in a way that leads to the disclosure of the secret keys that gain access to data.
 
 #### End-user Keys
-#### Decrytping Server
+#### Decrypting Server
 
 
 
