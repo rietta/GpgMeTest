@@ -1,3 +1,3 @@
 5c5d53d5e19d8e5950e58f0066bb5c765fb8229b  brandondeespub.asc
-0c04267a574d1cb36a96145b3e29cf942443655f  frank_rietta_pgp.asc
+325ed27f5a861b6b96c9137cfea041a167f4381a  frank_rietta_pgp.asc
 fed328a3cc3259a84a644bc30b4436fe22663929  rietta_security_team.asc
