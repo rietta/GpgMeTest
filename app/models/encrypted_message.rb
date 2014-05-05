@@ -18,7 +18,8 @@ class EncryptedMessage < ActiveRecord::Base
   PGP_OPENING     = '-----BEGIN PGP MESSAGE-----'
   PGP_ENDING      = '-----END PGP MESSAGE-----'
 
-  before_save :prepare_cipher_text
+  # The validation won't pass unless the ciphertext blocks are set to OpenPGP
+  before_validation :prepare_cipher_text
 
   # The database does not let these fields be nil, so the presence is needed.
   validate  :validate_ciphertext_is_not_plain, :expiration_is_in_the_future

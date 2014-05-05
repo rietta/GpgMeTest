@@ -13,12 +13,12 @@
 #
 
 class Post < EncryptedMessage
-  
+
   attr_accessor :subject, :body, :url
-  
+
   validates :subject, presence: true
   validates :body, presence: true
-  
+
   #############################################################
   # Data that the encrypted message needs to encode.
   def structured_plaintext
@@ -28,7 +28,7 @@ class Post < EncryptedMessage
       url: url,
     }
   end
-  
+
   def body_plaintext
 "
 Subject:
@@ -41,4 +41,4 @@ Message:
 #{body}
 "
   end
-end
+end # Post
