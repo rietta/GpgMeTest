@@ -61,6 +61,11 @@ Even the strongest crypto-system will fall if end-point security fails in a way 
 
 # License and Copyright
 
+## Third-Party Licenses
+This project makes use of the [ruby-gpgme gem](https://github.com/ueno/ruby-gpgme/), that is licensed under the terms of the GNU Lesser Public License.
+
+## Our License
+
 Copyright © 2014 Rietta Inc.
 All rights reserved.
 
