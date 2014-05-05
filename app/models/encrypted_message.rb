@@ -13,11 +13,25 @@
 #
 
 class EncryptedMessage < ActiveRecord::Base
-  MUST_IMPLEMENT = 'Must be implemented by a subclass.'
+  MUST_IMPLEMENT  = 'Must be implemented by a subclass.'
+  PGP_OPENING     = '-----BEGIN PGP MESSAGE-----'
+  PGP_ENDING      = '-----END PGP MESSAGE-----'
+
+  before_save :prepare_cipher_text
 
   # The database does not let these fields be nil, so the presence is needed.
   validates :delete_at, presence: true
   validates :type, presence: true
+  validates :encrypted_body, presence: true
+  validates :encrypted_structured_body, presence: true
+
+  ##
+  # Prepare the ciphertext for the encrypted record
+  def prepare_cipher_text
+    self.encrypted_body             = encrypt_text(body_plaintext)
+    self.encrypted_structured_body  = encrypt_text(structured_plaintext.to_json)
+    return
+  end
 
   ##
   # Encrypt the text to the authorized recipients using GnuPG.
@@ -25,6 +39,15 @@ class EncryptedMessage < ActiveRecord::Base
   def encrypt_text(text)
     crypto = GPGME::Crypto.new(armor: true)
     crypto.encrypt(text, recipients: recipient_keys).to_s
+  end
+
+  def self.pgp_message?(ciphertext)
+    lines = ciphertext.to_s.strip.split("\n")
+    if lines.length > 1 and PGP_OPENING == lines.first and PGP_ENDING == lines.last
+      true
+    else
+      false
+    end
   end
 
   #############################
@@ -50,4 +73,10 @@ class EncryptedMessage < ActiveRecord::Base
   def body_plaintext
     raise MUST_IMPLEMENT
   end
-end
+
+  ##############################
+  private
+
+
+
+end # EncryptedMessage
