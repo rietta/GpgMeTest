@@ -4,6 +4,7 @@ System for providing for a cryptographically enforced one-way information flow.
 
 - Encrypted records
 - Data retention policy - delete after date
+- Easily subclassed to create specific types of Encrypted Records
 
 ## Dependencies
 - gnupg
@@ -13,7 +14,7 @@ System for providing for a cryptographically enforced one-way information flow.
   - sudo apt-get install libgpgme11-dev
   - brew install gpgme
 
-## Cryptosystem in place
+## Crypto-system in place
 This system does not invent its own crypto, but uses GnuPG, that implements the
 OpenPGP standard.
 
@@ -32,6 +33,8 @@ pe", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2014-05-05 03:
 ```
 
 This means that the Rails logs contain the ciphertext of the protected message, but as long as the front-end server never has the keys to decrypt them then that is not leaked information.
+
+Even setting a filter parameter in `/config/application.rb` does not stop the ciphertext from being written to the log by the Rails' SQL logger.
 
 ## Weaknesses
 
@@ -60,14 +63,20 @@ This should only be possible for weak ciphers, even the classic DES is not prone
 ### Key management
 Even the strongest crypto-system will fall if end-point security fails in a way that leads to the disclosure of the secret keys that gain access to data.
 
-#### End-user Keys
-#### Decrypting Server
+#### The GnuPG Keyring
+The system makes use of the GnuPG keyring on the server, that is not managed within the context of the web application.
 
+#### End-user Keys
+When the server encrypts data to recipient keys that have never been present on the server and are managed by local end-user systems.
+
+#### Decrypting Server
+An alternate configuration. That uses database permissions and a second server to decrypt the contents for authorized users.  *The details are not covered here.*
 
 
 ## Further Reading
 
 - PostgreSQL has GPG support by default too.
+- [GnuPG OpenPGP Cards](https://www.gnupg.org/howtos/card-howto/en/smartcard-howto-single.html)
 
 
 # License and Copyright

@@ -4,8 +4,8 @@ describe 'Encrypted Post' do
 
   before(:each) do
     @basics = {
-      plaintext_description: 'Hello message.',
-      body: 'Hello, world.',
+      plaintext_description: "Hello #{SecureRandom.hex(12)}",
+      body: SecureRandom.hex(24),
       subject: 'This is a test',
       url: 'http://rietta.com/blog/'
     }
