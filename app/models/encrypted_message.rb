@@ -55,7 +55,30 @@ class EncryptedMessage < ActiveRecord::Base
     end
   end # pgp_message?
 
-  #############################
+  def expired?
+    nil != delete_at and delete_at.past?
+  end
+
+  #################################################################
+  # Data Retention Policy
+  #
+  # The data retention policy requires that the encrypted records are deleted
+  # after the record has expired.
+
+  def self.delete_expired
+    EncryptedMessage.expired.each do |em|
+      if em and em.past?
+        em.destroy
+      end
+    end # each
+  end # delete_expired
+
+  # Query the database for
+  def self.expired
+    where('delete_at IS NOT NULL AND delete_at < ?', Date.today)
+  end
+
+  #################################################################
   protected
 
   ##

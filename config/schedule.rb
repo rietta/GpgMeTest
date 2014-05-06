@@ -18,3 +18,9 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+##
+# Every morning, the data retention policy enforcement.
+every 1.day, :at => '2:30 am' do
+  runner "EncryptedMessage.delete_expired"
+end
