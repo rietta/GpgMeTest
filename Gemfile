@@ -28,6 +28,7 @@ gem 'spring',        group: :development
 gem 'annotate'
 gem 'rspec-rails'
 gem 'pry-rails'
+gem 'whenever'
 
 ##
 # GPG Integration

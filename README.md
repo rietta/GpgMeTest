@@ -77,7 +77,8 @@ An alternate configuration. That uses database permissions and a second server t
 
 - PostgreSQL has GPG support by default too.
 - [GnuPG OpenPGP Cards](https://www.gnupg.org/howtos/card-howto/en/smartcard-howto-single.html)
-
+- [Tutorial on Using the OpenPGP Cards](http://www.narf.ssji.net/~shtrom/wiki/tips/openpgpsmartcard)
+- [Write up](http://spin.atomicobject.com/2014/02/09/gnupg-openpgp-smartcard/)
 
 # License and Copyright
 
