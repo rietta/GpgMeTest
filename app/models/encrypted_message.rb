@@ -67,7 +67,7 @@ class EncryptedMessage < ActiveRecord::Base
 
   def self.delete_expired
     EncryptedMessage.expired.each do |em|
-      if em and em.past?
+      if em and em.expired?
         em.destroy
       end
     end # each
