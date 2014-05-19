@@ -1,5 +1,16 @@
 # Experimental Record with GPGME
 
+
+## Shamir’s Law: Crypto is bypassed, not penetrated
+> Cryptography is usually bypassed. I am not aware of any major
+> world-class security system employing cryptography in which the
+> hackers penetrated the system by actually going through the
+> cryptanalysis […] usually there are much simpler ways of
+> penetrating the security system — Adi Shamir
+
+
+## Overview
+
 System for providing for a cryptographically enforced one-way information flow.
 
 - Encrypted records
