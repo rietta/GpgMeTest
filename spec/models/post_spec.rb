@@ -13,11 +13,11 @@ describe 'Encrypted Post' do
 
   it 'Can encrypt a message' do
     post = Post.new(@basics.merge(delete_at: Date.today + 2.years))
-    post.should be_valid
+    expect(post).to be_valid
   end
 
   it 'Cannot save a message that expires in the past' do
     post = Post.new(@basics.merge(delete_at: Date.today - 1.day))
-    post.should be_invalid
+    expect(post).to be_invalid
   end
 end

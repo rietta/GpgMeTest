@@ -4,17 +4,17 @@ describe EncryptedMessage do
   context 'Testing if PGP Encrypted' do
     it 'When starts and ends with a block' do
       msg = "-----BEGIN PGP MESSAGE-----\nVersion: GnuPG v1\n7KwvSSEyADeT7sQHUEs7ZLgHs4/Qo3sq5wb6ryjukj8fKhYqn8fX+peoaiypwtHv\nkfKAu6lgyiCbjd4TaS+xRzZsiQsvekc=\n=slXk\n-----END PGP MESSAGE-----\n"
-      EncryptedMessage.pgp_message?(msg).should be_true
+      expect(EncryptedMessage.pgp_message?(msg)).to eq true
     end
 
     it 'When starts but does not end with a block' do
       msg = "-----BEGIN PGP MESSAGE-----\nVersion: GnuPG v1\n7KwvSSEyADeT7sQHUEs7ZLgHs4/Qo3sq5wb6ryjukj8fKhYqn8fX+peoaiypwtHv\nkfKAu6lgyiCbjd4TaS+xRzZsiQsvekc=\n=slXk"
-      EncryptedMessage.pgp_message?(msg).should be_false
+      expect(EncryptedMessage.pgp_message?(msg)).to eq false
     end
 
     it 'When does not start, but ends with a block' do
       msg = "Version: GnuPG v1\n7KwvSSEyADeT7sQHUEs7ZLgHs4/Qo3sq5wb6ryjukj8fKhYqn8fX+peoaiypwtHv\nkfKAu6lgyiCbjd4TaS+xRzZsiQsvekc=\n=slXk\n-----END PGP MESSAGE-----\n"
-      EncryptedMessage.pgp_message?(msg).should be_false
+      expect(EncryptedMessage.pgp_message?(msg)).to eq false
     end
 
   end # testing PGP encrypted
@@ -47,11 +47,11 @@ describe EncryptedMessage do
           m.save(validate: false)
         end
 
-        EncryptedMessage.count.should == 5
-        EncryptedMessage.expired.count.should == 2
-        EncryptedMessage.delete_expired
-        EncryptedMessage.count.should == 3
-        EncryptedMessage.expired.count.should == 0
+        expect(EncryptedMessage.count).to eq 5
+        expect(EncryptedMessage.expired.count).to eq 2
+        expect(EncryptedMessage.delete_expired
+        expect(EncryptedMessage.count).to eq 3
+        expect(EncryptedMessage.expired.count).to eq 0
 
         EncryptedMessage.delete_all
       end

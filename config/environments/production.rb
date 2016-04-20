@@ -80,4 +80,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  RECIPIENT_PGP_KEYS={'frank@rietta.com' => '0xC004BAE3', 'brandon@rietta.com' => '0x790D8CA3'}
 end
