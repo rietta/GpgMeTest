@@ -1,6 +1,11 @@
 # Experimental Record with GPGME
 [![Dependency Status](https://gemnasium.com/rietta/GpgMeTest.svg)](https://gemnasium.com/rietta/GpgMeTest)
 
+This tech demo project is a companion to https://github.com/rietta/GpgMailTest. Whereas GpgMailTest
+focused on implementing an application-wide mail interceptor that encrypts outgoing mail, this project
+is about practical PGP encryption for storage.
+
+
 ## Shamir’s Law: Crypto is bypassed, not penetrated
 > Cryptography is usually bypassed. I am not aware of any major world-class security system employing cryptography in which the hackers penetrated the system by actually going through the cryptanalysis [...] usually there are much simpler ways of penetrating the security system -- Adi Shamir
 
